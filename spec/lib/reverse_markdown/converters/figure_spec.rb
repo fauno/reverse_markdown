@@ -17,4 +17,9 @@ describe ReverseMarkdown::Converters::Figure do
     input = node_for('<figure><figcaption>foo</figcaption><img src="foo.png"/></figure>')
     expect(converter.convert(input)).to eq ' ![foo](foo.png)'
   end
+
+  it 'can treat figcaption as optional' do
+    input = node_for('<figure><img src="foo.png"/></figure>')
+    expect(converter.convert(input)).to eq ' ![](foo.png)'
+  end
 end
